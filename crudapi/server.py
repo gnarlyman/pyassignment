@@ -1,6 +1,6 @@
 import logging
 import aiohttp.web as web
-from crudapi.routes import routes
+from crudapi.views import routes
 
 logging.basicConfig(level=logging.DEBUG, format='%(levelname)s %(name)s=%(lineno)s: %(message)s')
 logger = logging.getLogger('crudapi')
