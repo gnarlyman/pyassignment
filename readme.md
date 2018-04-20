@@ -8,5 +8,5 @@ via the rest api.
 
 ### Usage
 1. `sh runserver.sh`
-2. `python runclient.py`
+2. `python -m unittest discover`
 3. browse to http://localhost:8080/guid to see a list of guids
