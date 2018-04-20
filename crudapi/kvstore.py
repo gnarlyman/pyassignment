@@ -29,3 +29,7 @@ class KVStore(object):
             return KVStore.__store__.pop(key)
         else:
             return None
+
+    @staticmethod
+    def list():
+        return list(KVStore.__store__.values())

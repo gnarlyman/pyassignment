@@ -14,6 +14,12 @@ async def index_handler(_):
     return web.json_response({"title": "Crowdstrike Python Assignment Server"})
 
 
+@routes.get('/guid')
+async def guid_get_all(_):
+    guids = KVStore.list()
+    return web.json_response({'result': guids})
+
+
 @routes.post('/guid')
 async def guid_post(request):
     try:
