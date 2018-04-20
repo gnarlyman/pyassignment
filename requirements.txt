@@ -1,0 +1,4 @@
+pip
+aiohttp
+gunicorn
+requests
