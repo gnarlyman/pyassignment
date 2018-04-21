@@ -41,10 +41,10 @@ class TestCRUDApi(unittest.TestCase):
     def test060_put_200(self):
         guid = '183d81166f9e47eb8f97c4873259c9d2294de010'
         req = requests.put('{}/guid/{}'.format(self.server, guid), json={
-            'expiration': '0000000000'
+            'arbitrarykey': '0000000000'
         })
         response_data = req.json()
-        self.assertEqual(response_data['guid']['expiration'], '0000000000')
+        self.assertEqual(response_data['guid']['arbitrarykey'], '0000000000')
         self.assertEqual(req.status_code, 200)
 
     def test070_delete_200(self):

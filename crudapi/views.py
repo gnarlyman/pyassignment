@@ -1,6 +1,8 @@
 import logging
 import json
 import aiohttp.web as web
+
+from datetime import datetime
 from crudapi.kvstore import KVStore
 
 
@@ -29,6 +31,11 @@ async def guid_post(request):
 
     if 'guid' not in data:
         return web.json_response({'result': 'data missing guid'}, status=400)
+
+    # tack on some other data
+    data.update({
+        'expiration': datetime.utcnow().timestamp()
+    })
 
     result = KVStore.create(data['guid'], data)
 
@@ -62,7 +69,12 @@ class GUID(web.View):
 
         logger.debug("POST request for guid: {}. Data: {}".format(guid, data))
 
-        data.update({'guid': guid})
+        # tack on some other data
+        data.update({
+            'guid': guid,
+            'expiration': datetime.utcnow().timestamp()
+        })
+
         result = KVStore.create(guid, data)
 
         if result:
