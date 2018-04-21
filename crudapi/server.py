@@ -9,15 +9,6 @@ logging.basicConfig(level=logging.DEBUG, format='%(asctime)s %(levelname)s %(nam
 logger = logging.getLogger('crudapi')
 
 
-async def start_background_tasks(app):
-    app['expire_guids'] = app.loop.create_task(jobs.expire_guids())
-
-
-async def cleanup_background_tasks(app):
-    app['expire_guids'].cancel()
-    await app['expire_guids']
-
-
 async def create_app():
     loop = asyncio.get_event_loop()
     loop.create_task(jobs.expire_guids())
